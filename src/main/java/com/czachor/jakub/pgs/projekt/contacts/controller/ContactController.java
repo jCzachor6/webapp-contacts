@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/contact")
 public class ContactController {
@@ -30,5 +32,11 @@ public class ContactController {
         }catch(ContactDoesNotExistException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<ContactRes>> getAllContacts(){
+        List<ContactRes> contactResList = contactService.findAllContacts();
+        return new ResponseEntity<>(contactResList, HttpStatus.OK);
     }
 }

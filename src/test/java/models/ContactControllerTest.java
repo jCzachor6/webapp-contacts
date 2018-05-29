@@ -1,6 +1,7 @@
 package models;
 
 import com.czachor.jakub.pgs.projekt.contacts.controller.ContactController;
+import com.czachor.jakub.pgs.projekt.contacts.models.ContactRes;
 import com.czachor.jakub.pgs.projekt.contacts.models.asm.ContactAsm;
 import com.czachor.jakub.pgs.projekt.contacts.models.entities.Contact;
 import com.czachor.jakub.pgs.projekt.contacts.service.ContactService;
@@ -10,8 +11,12 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.StringContains.containsString;
@@ -50,7 +55,7 @@ public class ContactControllerTest {
         when(service.findContactById(1L)).thenReturn(new ContactAsm().toResource(contact));
         mockMvc.perform(get("/contact/{id}", 1L))
                 .andExpect(status().isFound())
-                .andDo(print())
+                //.andDo(print())
                 .andExpect(jsonPath("$.name", is("Name")))
                 .andExpect(jsonPath("$.surname", is("Surname")))
                 .andExpect(jsonPath("$.address", is("Contact Address")))
@@ -65,6 +70,19 @@ public class ContactControllerTest {
         when(service.findContactById(1L)).thenThrow(new ContactDoesNotExistException());
         mockMvc.perform(get("/contact/{id}", 1L))
                 .andExpect(status().isNotFound());
+    }
+
+    @Test
+    public void getAllContacts() throws Exception {
+        List<ContactRes> contactResList = new ArrayList<>();
+        contactResList.add(new ContactAsm().toResource(contact));
+        contactResList.add(new ContactAsm().toResource(contact));
+        contactResList.add(new ContactAsm().toResource(contact));
+        when(service.findAllContacts()).thenReturn(contactResList);
+        mockMvc.perform(get("/contact"))
+                .andExpect(status().isOk())
+                //.andDo(print())
+                .andExpect(jsonPath("$.").isArray());
     }
 }
 
