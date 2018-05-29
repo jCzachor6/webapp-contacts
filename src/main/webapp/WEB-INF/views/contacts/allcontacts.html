@@ -21,7 +21,7 @@
                     <button class="btn btn-mini btn-info" ng-click="editContact(single)" ng-show="edit">Edit contact</button>
                 </th>
             </tr>
-            <tr ng-repeat="contact in contacts">
+            <tr ng-repeat="contact in contacts | orderBy:sort">
                 <th>{{contact.name}}</th>
                 <th>{{contact.surname}}</th>
                 <th>{{contact.address}}</th>
@@ -33,4 +33,6 @@
             </tr>
             </tbody>
         </table>
+    <button class="btn btn-mini" ng-click="sort='surname'">Sort by surname</button>
+    <button class="btn btn-mini btn-info" ng-click="reset()">Reset</button>
 </div>

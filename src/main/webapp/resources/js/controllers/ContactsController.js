@@ -4,6 +4,7 @@ var ContactsController = function($scope, $http) {
     $scope.contacts = {};
     $scope.single = {};
     $scope.edit = false;
+    $scope.sort = "";
 
     $scope.fetchContacts = function (){
         $http.get('contact').then(function(response) {
@@ -47,6 +48,17 @@ var ContactsController = function($scope, $http) {
         $scope.single = contact;
         $scope.edit = true;
     };
+
+    $scope.reset = function (){
+        $scope.single = {};
+        $scope.edit = false;
+        $scope.sort = "";
+    };
+
+    $scope.sorting = function (sort) {
+        $scope.sort = sort;
+    };
+
 
     $scope.fetchContacts();
 };
