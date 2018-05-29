@@ -1,7 +1,6 @@
 package com.czachor.jakub.pgs.projekt.contacts.controller;
 
 import com.czachor.jakub.pgs.projekt.contacts.models.ContactRes;
-import com.czachor.jakub.pgs.projekt.contacts.models.entities.Contact;
 import com.czachor.jakub.pgs.projekt.contacts.service.ContactService;
 import com.czachor.jakub.pgs.projekt.contacts.service.exceptions.ContactDoesNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;

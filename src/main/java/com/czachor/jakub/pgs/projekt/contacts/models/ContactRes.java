@@ -3,11 +3,12 @@ package com.czachor.jakub.pgs.projekt.contacts.models;
 import com.czachor.jakub.pgs.projekt.contacts.models.entities.Contact;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.springframework.hateoas.ResourceSupport;
 
-
-@EqualsAndHashCode(callSuper = false)
+@EqualsAndHashCode(callSuper = true)
 @Data
+@NoArgsConstructor
 public class ContactRes extends ResourceSupport{
     private Long rId;
 
