@@ -1,8 +1,9 @@
 'use strict';
 
-var ContactsController = function($scope, $http, $window) {
+var ContactsController = function($scope, $http) {
     $scope.contacts = {};
     $scope.single = {};
+    $scope.edit = false;
 
     $scope.fetchContacts = function (){
         $http.get('contact').then(function(response) {
@@ -32,6 +33,19 @@ var ContactsController = function($scope, $http, $window) {
             $scope.single = {};
             $scope.fetchContacts();
         });
+    };
+
+    $scope.editContact = function (single){
+        $http.put('contact', single).then(function(response) {
+            $scope.single = {};
+            $scope.edit = false;
+            $scope.fetchContacts();
+        });
+    };
+
+    $scope.editMode = function (contact){
+        $scope.single = contact;
+        $scope.edit = true;
     };
 
     $scope.fetchContacts();
