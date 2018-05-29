@@ -11,6 +11,10 @@ import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Jakub Czachor
+ * Class used to set additional links to contactRes object.
+ */
 public class ContactAsm extends ResourceAssemblerSupport<Contact, ContactRes> {
     public ContactAsm(){
         super(ContactController.class, ContactRes.class);
