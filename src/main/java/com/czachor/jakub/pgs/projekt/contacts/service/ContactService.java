@@ -8,6 +8,6 @@ public interface ContactService {
     ContactRes findContactById(Long id);
     List<ContactRes> findAllContacts();
     void deleteContact(ContactRes contactRes);
-    ContactRes addContact(ContactRes contactRes);
+    void addContact(ContactRes contactRes);
     ContactRes editContact(ContactRes contactRes);
 }

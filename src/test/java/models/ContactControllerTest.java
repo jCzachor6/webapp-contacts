@@ -24,6 +24,7 @@ import static org.hamcrest.core.StringContains.containsString;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -71,7 +72,7 @@ public class ContactControllerTest {
     public void findNonExistingContactTest() throws Exception{
         when(service.findContactById(1L)).thenThrow(new ContactDoesNotExistException());
         mockMvc.perform(get("/contact/{id}", 1L))
-                .andExpect(status().isNotFound());
+                .andExpect(status().isNoContent());
     }
 
     @Test
@@ -84,8 +85,9 @@ public class ContactControllerTest {
         mockMvc.perform(get("/contact"))
                 .andExpect(status().isOk())
                 //.andDo(print())
-                .andExpect(jsonPath("$.").isArray());
+                .andExpect(jsonPath("$.*").isArray());
     }
+
 }
 
 

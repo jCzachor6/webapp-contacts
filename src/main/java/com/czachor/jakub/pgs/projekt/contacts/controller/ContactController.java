@@ -32,7 +32,7 @@ public class ContactController {
             ContactRes contactRes = contactService.findContactById(id);
             return new ResponseEntity<>(contactRes, HttpStatus.FOUND);
         }catch(ContactDoesNotExistException e){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
 
@@ -48,7 +48,27 @@ public class ContactController {
             contactService.deleteContact(contactRes);
             return new ResponseEntity(HttpStatus.OK);
         }catch(ContactDoesNotExistException e){
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
+            return new ResponseEntity(HttpStatus.NO_CONTENT);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public ResponseEntity<ContactRes> createContact(@RequestBody ContactRes contactRes){
+        try {
+            contactService.addContact(contactRes);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }catch (ContactDoesNotExistException e){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.PUT)
+    public ResponseEntity<ContactRes> updateContact(@RequestBody ContactRes contactRes){
+        try {
+            ContactRes updated = contactService.editContact(contactRes);
+            return new ResponseEntity<>(updated, HttpStatus.OK);
+        }catch(ContactDoesNotExistException e){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
     }
 }
