@@ -14,6 +14,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
+/**
+ * @author Jakub Czachor
+ * ContactController consist all REST methods used to manage contacts.
+ */
 @Controller
 @RequestMapping("/contact")
 public class ContactController {
@@ -25,6 +29,10 @@ public class ContactController {
         this.contactService = contactService;
     }
 
+    /**
+     * @param id - Unique identifier of a Comment
+     * @return ContactRes of given id
+     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<ContactRes> getContactById(@PathVariable("id") Long id){
         try{
@@ -35,12 +43,19 @@ public class ContactController {
         }
     }
 
+    /**
+     * @return List of all contacts.
+     */
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<ContactRes>> getAllContacts(){
         List<ContactRes> contactResList = contactService.findAllContacts();
         return new ResponseEntity<>(contactResList, HttpStatus.OK);
     }
 
+    /**
+     * @param contactRes - resource to delete from database
+     * @return HttpStatus OK if deleted, NO_CONTENT if couldn't find entity to delete
+     */
     @RequestMapping(method = RequestMethod.DELETE)
     public ResponseEntity deleteContact(@RequestBody ContactRes contactRes){
         try{
@@ -51,6 +66,10 @@ public class ContactController {
         }
     }
 
+    /**
+     * @param contactRes - resource to add to database
+     * @return HttpStatus CREATED if added, NO_CONTENT if couldn't get entity back from database.
+     */
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<ContactRes> createContact(@RequestBody ContactRes contactRes){
         try {
@@ -61,6 +80,10 @@ public class ContactController {
         }
     }
 
+    /**
+     * @param contactRes - resouce to update in database
+     * @return HttpStatus OK if edited, NO_CONTENT if couldn't find entity to edit
+     */
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<ContactRes> updateContact(@RequestBody ContactRes contactRes){
         try {
