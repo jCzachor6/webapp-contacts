@@ -1,0 +1,3 @@
+src/main/webapp/resources/js/angular/* linguist-vendored
+src/main/webapp/resources/js/angular-route/* linguist-vendored
+src/main/webapp/resources/bootstrap/* linguist-vendored
