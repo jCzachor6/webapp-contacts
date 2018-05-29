@@ -12,13 +12,15 @@
             </thead>
             <tbody>
             <tr>
-                <th><input type="text" class="form-control" ng-model="single.name"></th>
-                <th><input type="text" class="form-control" ng-model="single.surname"></th>
-                <th><input type="text" class="form-control" ng-model="single.address"></th>
-                <th><input type="text" class="form-control" ng-model="single.phoneNumber"></th>
+                <th><input type="text" class="form-control" ng-model="single.name" maxlength="30"></th>
+                <th><input type="text" class="form-control" ng-model="single.surname" maxlength="30"></th>
+                <th><input type="text" class="form-control" ng-model="single.address" maxlength="30"></th>
+                <th><input type="text" class="form-control" ng-model="single.phoneNumber" maxlength="15"></th>
                 <th>
-                    <button class="btn btn-mini btn-success" ng-click="addContact(single)" ng-hide="edit">Add contact</button>
-                    <button class="btn btn-mini btn-info" ng-click="editContact(single)" ng-show="edit">Edit contact</button>
+                    <button class="btn btn-mini btn-success" ng-click="addContact(single)" ng-hide="edit"
+                            ng-disabled="!single.name || !single.surname || !single.address || !single.phoneNumber">Add contact</button>
+                    <button class="btn btn-mini btn-info" ng-click="editContact(single)" ng-show="edit"
+                            ng-disabled="!single.name || !single.surname || !single.address || !single.phoneNumber">Edit contact</button>
                 </th>
             </tr>
             <tr ng-repeat="contact in contacts | orderBy:sort">
