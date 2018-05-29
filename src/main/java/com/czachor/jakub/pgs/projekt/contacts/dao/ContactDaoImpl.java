@@ -53,6 +53,6 @@ public class ContactDaoImpl implements ContactDao {
     public void editContact(Contact contact) {
         sessionFactory
                 .getCurrentSession()
-                .merge(contact);
+                .update(contact);
     }
 }

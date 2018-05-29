@@ -72,8 +72,7 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public ContactRes editContact(ContactRes contactRes) {
-        Contact contact = new Contact();
-        contact.setId(contactRes.getRId());
+        Contact contact = contactDao.findContactById(contactRes.getRId());
         contact.setPhoneNumber(contactRes.getPhoneNumber());
         contact.setAddress(contactRes.getAddress());
         contact.setSurname(contactRes.getSurname());
