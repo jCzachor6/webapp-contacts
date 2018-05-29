@@ -4,6 +4,10 @@ import lombok.Data;
 import javax.persistence.*;
 import javax.validation.constraints.Size;
 
+/**
+ * @author Jakub Czachor
+ * Contact class is used to store contacts in database.
+ */
 @Entity
 @Table(name = "CONTACT")
 @Data

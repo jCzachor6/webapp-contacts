@@ -5,7 +5,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.springframework.hateoas.ResourceSupport;
-
+/**
+ * @author Jakub Czachor
+ */
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
