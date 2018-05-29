@@ -61,14 +61,13 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public ContactRes addContact(ContactRes contactRes) {
+    public void addContact(ContactRes contactRes) {
         Contact contact = new Contact();
         contact.setPhoneNumber(contactRes.getPhoneNumber());
         contact.setAddress(contactRes.getAddress());
         contact.setSurname(contactRes.getSurname());
         contact.setName(contactRes.getName());
         contactDao.addContact(contact);
-        return findContactById(contact.getId());
     }
 
     @Override

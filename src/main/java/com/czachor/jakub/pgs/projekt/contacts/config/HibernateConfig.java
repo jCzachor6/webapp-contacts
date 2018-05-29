@@ -28,7 +28,7 @@ public class HibernateConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("jczachor.web.app.quickchat.models.entities");
+        sessionFactory.setPackagesToScan("com.czachor.jakub.pgs.projekt.contacts.models.entities");
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }

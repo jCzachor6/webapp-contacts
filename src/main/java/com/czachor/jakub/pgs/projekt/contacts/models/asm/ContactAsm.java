@@ -5,6 +5,9 @@ import com.czachor.jakub.pgs.projekt.contacts.models.ContactRes;
 import com.czachor.jakub.pgs.projekt.contacts.models.entities.Contact;
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +20,9 @@ public class ContactAsm extends ResourceAssemblerSupport<Contact, ContactRes> {
     @Override
     public ContactRes toResource(Contact contact) {
         ContactRes contactRes = new ContactRes(contact);
-
+        contactRes.add(
+                linkTo(methodOn(ContactController.class).getContactById(contact.getId())).withSelfRel()
+        );
         return contactRes;
     }
 
