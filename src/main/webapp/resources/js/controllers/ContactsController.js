@@ -2,6 +2,7 @@
 
 var ContactsController = function($scope, $http, $window) {
     $scope.contacts = {};
+    $scope.single = {};
 
     $scope.fetchContacts = function (){
         $http.get('contact').then(function(response) {
@@ -25,5 +26,13 @@ var ContactsController = function($scope, $http, $window) {
             }, function(rejection) {
             });
     };
+
+    $scope.addContact = function (single){
+        $http.post('contact', single).then(function(response) {
+            $scope.single = {};
+            $scope.fetchContacts();
+        });
+    };
+
     $scope.fetchContacts();
 };

@@ -11,6 +11,13 @@
             </tr>
             </thead>
             <tbody>
+            <tr>
+                <th><input type="text" class="form-control" ng-model="single.name"></th>
+                <th><input type="text" class="form-control" ng-model="single.surname"></th>
+                <th><input type="text" class="form-control" ng-model="single.address"></th>
+                <th><input type="text" class="form-control" ng-model="single.phoneNumber"></th>
+                <th><button class="btn btn-mini btn-success" ng-click="addContact(single)">Add contact</button></th>
+            </tr>
             <tr ng-repeat="contact in contacts">
                 <th>{{contact.name}}</th>
                 <th>{{contact.surname}}</th>
