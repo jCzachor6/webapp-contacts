@@ -1,6 +1,7 @@
 package com.czachor.jakub.pgs.projekt.contacts.controller;
 
 import com.czachor.jakub.pgs.projekt.contacts.models.ContactRes;
+import com.czachor.jakub.pgs.projekt.contacts.models.entities.Contact;
 import com.czachor.jakub.pgs.projekt.contacts.service.ContactService;
 import com.czachor.jakub.pgs.projekt.contacts.service.exceptions.ContactDoesNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -38,5 +40,15 @@ public class ContactController {
     public ResponseEntity<List<ContactRes>> getAllContacts(){
         List<ContactRes> contactResList = contactService.findAllContacts();
         return new ResponseEntity<>(contactResList, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE)
+    public ResponseEntity deleteContact(@RequestBody ContactRes contactRes){
+        try{
+            contactService.deleteContact(contactRes);
+            return new ResponseEntity(HttpStatus.OK);
+        }catch(ContactDoesNotExistException e){
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
     }
 }
