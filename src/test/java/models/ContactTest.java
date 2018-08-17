@@ -1,7 +1,7 @@
 package models;
 
-import com.czachor.jakub.pgs.projekt.contacts.models.ContactRes;
-import com.czachor.jakub.pgs.projekt.contacts.models.entities.Contact;
+import czachor.jakub.contacts.models.ContactDTO;
+import czachor.jakub.contacts.models.entities.Contact;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,17 +24,17 @@ public class ContactTest {
 
     @Test
     public void verifyContactResConstructor(){
-        ContactRes contactRes = new ContactRes(contact);
-        assertEquals(contactRes.getAddress(), contact.getAddress());
-        assertEquals(contactRes.getName(), contact.getName());
-        assertEquals(contactRes.getPhoneNumber(), contact.getPhoneNumber());
-        assertEquals(contactRes.getRId(), contact.getId());
-        assertEquals(contactRes.getSurname(), contact.getSurname());
+        ContactDTO contactDTO = new ContactDTO(contact);
+        assertEquals(contactDTO.getAddress(), contact.getAddress());
+        assertEquals(contactDTO.getName(), contact.getName());
+        assertEquals(contactDTO.getPhoneNumber(), contact.getPhoneNumber());
+        assertEquals(contactDTO.getRId(), contact.getId());
+        assertEquals(contactDTO.getSurname(), contact.getSurname());
     }
 
     @Test
     public void verifyNoLinksInContactResYet(){
-        ContactRes contactRes = new ContactRes(contact);
-        assertFalse(contactRes.hasLinks());
+        ContactDTO contactDTO = new ContactDTO(contact);
+        assertFalse(contactDTO.hasLinks());
     }
 }

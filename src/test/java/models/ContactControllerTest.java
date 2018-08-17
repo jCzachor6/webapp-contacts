@@ -1,18 +1,16 @@
 package models;
 
-import com.czachor.jakub.pgs.projekt.contacts.controller.ContactController;
-import com.czachor.jakub.pgs.projekt.contacts.models.ContactRes;
-import com.czachor.jakub.pgs.projekt.contacts.models.asm.ContactAsm;
-import com.czachor.jakub.pgs.projekt.contacts.models.entities.Contact;
-import com.czachor.jakub.pgs.projekt.contacts.service.ContactService;
-import com.czachor.jakub.pgs.projekt.contacts.service.exceptions.ContactDoesNotExistException;
+import czachor.jakub.contacts.controller.ContactController;
+import czachor.jakub.contacts.models.ContactDTO;
+import czachor.jakub.contacts.models.asm.ContactAsm;
+import czachor.jakub.contacts.models.entities.Contact;
+import czachor.jakub.contacts.service.ContactService;
+import czachor.jakub.contacts.service.exceptions.ContactDoesNotExistException;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
@@ -77,11 +75,11 @@ public class ContactControllerTest {
 
     @Test
     public void getAllContactsTest() throws Exception {
-        List<ContactRes> contactResList = new ArrayList<>();
-        contactResList.add(new ContactAsm().toResource(contact));
-        contactResList.add(new ContactAsm().toResource(contact));
-        contactResList.add(new ContactAsm().toResource(contact));
-        when(service.findAllContacts()).thenReturn(contactResList);
+        List<ContactDTO> contactDTOList = new ArrayList<>();
+        contactDTOList.add(new ContactAsm().toResource(contact));
+        contactDTOList.add(new ContactAsm().toResource(contact));
+        contactDTOList.add(new ContactAsm().toResource(contact));
+        when(service.findAllContacts()).thenReturn(contactDTOList);
         mockMvc.perform(get("/contact"))
                 .andExpect(status().isOk())
                 //.andDo(print())

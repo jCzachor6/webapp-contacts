@@ -1,10 +1,10 @@
-package com.czachor.jakub.pgs.projekt.contacts.service;
+package czachor.jakub.contacts.service;
 
-import com.czachor.jakub.pgs.projekt.contacts.dao.ContactDao;
-import com.czachor.jakub.pgs.projekt.contacts.models.ContactRes;
-import com.czachor.jakub.pgs.projekt.contacts.models.asm.ContactAsm;
-import com.czachor.jakub.pgs.projekt.contacts.models.entities.Contact;
-import com.czachor.jakub.pgs.projekt.contacts.service.exceptions.ContactDoesNotExistException;
+import czachor.jakub.contacts.dao.ContactDao;
+import czachor.jakub.contacts.models.ContactDTO;
+import czachor.jakub.contacts.models.asm.ContactAsm;
+import czachor.jakub.contacts.models.entities.Contact;
+import czachor.jakub.contacts.service.exceptions.ContactDoesNotExistException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +23,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public ContactRes findContactById(Long id) {
+    public ContactDTO findContactById(Long id) {
         Contact contact = contactDao.findContactById(id);
         if (contact != null) {
             return new ContactAsm().toResource(contact);
@@ -37,7 +37,7 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public List<ContactRes> findAllContacts() {
+    public List<ContactDTO> findAllContacts() {
         List<Contact> contactList = contactDao.findAllContacts();
         if (contactList != null) {
             return new ContactAsm().toResources(contactList);
@@ -47,36 +47,36 @@ public class ContactServiceImpl implements ContactService {
     }
 
     @Override
-    public void deleteContact(ContactRes contactRes) {
-        Contact contact = contactDao.findContactById(contactRes.getRId());
+    public void deleteContact(ContactDTO contactDTO) {
+        Contact contact = contactDao.findContactById(contactDTO.getRId());
         if (contact != null) {
             contactDao.deleteContact(contact);
         } else {
             throw new ContactDoesNotExistException(
                     "Contact with id " +
-                            contactRes.getRId() +
+                            contactDTO.getRId() +
                             " doesn't exist"
             );
         }
     }
 
     @Override
-    public void addContact(ContactRes contactRes) {
+    public void addContact(ContactDTO contactDTO) {
         Contact contact = new Contact();
-        contact.setPhoneNumber(contactRes.getPhoneNumber());
-        contact.setAddress(contactRes.getAddress());
-        contact.setSurname(contactRes.getSurname());
-        contact.setName(contactRes.getName());
+        contact.setPhoneNumber(contactDTO.getPhoneNumber());
+        contact.setAddress(contactDTO.getAddress());
+        contact.setSurname(contactDTO.getSurname());
+        contact.setName(contactDTO.getName());
         contactDao.addContact(contact);
     }
 
     @Override
-    public ContactRes editContact(ContactRes contactRes) {
-        Contact contact = contactDao.findContactById(contactRes.getRId());
-        contact.setPhoneNumber(contactRes.getPhoneNumber());
-        contact.setAddress(contactRes.getAddress());
-        contact.setSurname(contactRes.getSurname());
-        contact.setName(contactRes.getName());
+    public ContactDTO editContact(ContactDTO contactDTO) {
+        Contact contact = contactDao.findContactById(contactDTO.getRId());
+        contact.setPhoneNumber(contactDTO.getPhoneNumber());
+        contact.setAddress(contactDTO.getAddress());
+        contact.setSurname(contactDTO.getSurname());
+        contact.setName(contactDTO.getName());
         contactDao.editContact(contact);
         return findContactById(contact.getId());
     }
