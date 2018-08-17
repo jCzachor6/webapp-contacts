@@ -2,6 +2,7 @@ package models;
 
 import czachor.jakub.contacts.models.ContactDTO;
 import czachor.jakub.contacts.models.entities.Contact;
+import czachor.jakub.contacts.utils.ContactMapper;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -24,7 +25,7 @@ public class ContactTest {
 
     @Test
     public void verifyContactResConstructor(){
-        ContactDTO contactDTO = new ContactDTO(contact);
+        ContactDTO contactDTO = new ContactMapper().map(contact);
         assertEquals(contactDTO.getAddress(), contact.getAddress());
         assertEquals(contactDTO.getName(), contact.getName());
         assertEquals(contactDTO.getPhoneNumber(), contact.getPhoneNumber());
@@ -34,7 +35,7 @@ public class ContactTest {
 
     @Test
     public void verifyNoLinksInContactResYet(){
-        ContactDTO contactDTO = new ContactDTO(contact);
+        ContactDTO contactDTO = new ContactMapper().map(contact);
         assertFalse(contactDTO.hasLinks());
     }
 }

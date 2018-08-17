@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
 
 @Transactional
@@ -32,7 +33,12 @@ public class ContactDaoImpl implements ContactDao {
         Query query = sessionFactory
                 .getCurrentSession()
                 .createQuery("from Contact");
-        return query.getResultList();
+        List<Contact> list = query.getResultList();
+        if(list==null){
+            return Collections.emptyList();
+        }else{
+            return list;
+        }
     }
 
     @Override
@@ -53,6 +59,6 @@ public class ContactDaoImpl implements ContactDao {
     public void editContact(Contact contact) {
         sessionFactory
                 .getCurrentSession()
-                .update(contact);
+                .merge(contact);
     }
 }
