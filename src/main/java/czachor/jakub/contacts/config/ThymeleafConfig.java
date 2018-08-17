@@ -1,4 +1,4 @@
-package com.czachor.jakub.pgs.projekt.contacts.config;
+package czachor.jakub.contacts.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.czachor.jakub.pgs.projekt.contacts.config;
+package czachor.jakub.contacts.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.czachor.jakub.pgs.projekt.contacts")
+@ComponentScan("czachor.jakub.contacts")
 @Import({ThymeleafConfig.class})
 public class WebMvcConfig implements WebMvcConfigurer {
 

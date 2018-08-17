@@ -1,6 +1,6 @@
-package com.czachor.jakub.pgs.projekt.contacts.models;
+package czachor.jakub.contacts.models;
 
-import com.czachor.jakub.pgs.projekt.contacts.models.entities.Contact;
+import czachor.jakub.contacts.models.entities.Contact;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -11,7 +11,7 @@ import org.springframework.hateoas.ResourceSupport;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
-public class ContactRes extends ResourceSupport{
+public class ContactDTO extends ResourceSupport{
     private Long rId;
 
     private String name;
@@ -22,7 +22,7 @@ public class ContactRes extends ResourceSupport{
 
     private String phoneNumber;
 
-    public ContactRes(Contact contact) {
+    public ContactDTO(Contact contact) {
         this.rId = contact.getId();
         this.name = contact.getName();
         this.surname = contact.getSurname();

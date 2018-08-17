@@ -1,4 +1,4 @@
-package com.czachor.jakub.pgs.projekt.contacts.service.exceptions;
+package czachor.jakub.contacts.service.exceptions;
 
 import lombok.NoArgsConstructor;
 

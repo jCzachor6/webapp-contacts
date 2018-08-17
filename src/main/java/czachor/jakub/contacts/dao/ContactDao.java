@@ -1,6 +1,6 @@
-package com.czachor.jakub.pgs.projekt.contacts.dao;
+package czachor.jakub.contacts.dao;
 
-import com.czachor.jakub.pgs.projekt.contacts.models.entities.Contact;
+import czachor.jakub.contacts.models.entities.Contact;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.czachor.jakub.pgs.projekt.contacts.models.entities;
+package czachor.jakub.contacts.models.entities;
 
 import lombok.Data;
 import javax.persistence.*;
