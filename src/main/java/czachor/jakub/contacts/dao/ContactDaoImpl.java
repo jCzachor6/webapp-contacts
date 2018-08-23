@@ -49,10 +49,10 @@ public class ContactDaoImpl implements ContactDao {
     }
 
     @Override
-    public void addContact(Contact contact) {
-         sessionFactory
+    public Contact addContact(Contact contact) {
+         return (Contact) sessionFactory
                 .getCurrentSession()
-                .persist(contact);
+                .merge(contact);
     }
 
     @Override
