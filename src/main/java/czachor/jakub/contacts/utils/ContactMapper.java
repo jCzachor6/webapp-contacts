@@ -11,12 +11,14 @@ import java.util.List;
 
 public class ContactMapper {
     private ModelMapper modelMapper;
+    private ContactAsm contactAsm;
 
     public ContactMapper() {
         this.modelMapper = new ModelMapper();
         this.modelMapper.getConfiguration()
                 .setMatchingStrategy(MatchingStrategies.LOOSE);
         configureMappings();
+        this.contactAsm = new ContactAsm(this);
     }
 
     private void configureMappings() {
@@ -43,10 +45,10 @@ public class ContactMapper {
     }
 
     public ContactDTO mapWithLinks(Contact contact) {
-        return new ContactAsm().toResource(contact);
+        return contactAsm.toResource(contact);
     }
 
     public List<ContactDTO> mapWithLinks(Iterable<? extends Contact> entities) {
-        return new ContactAsm().toResources(entities);
+        return contactAsm.toResources(entities);
     }
 }

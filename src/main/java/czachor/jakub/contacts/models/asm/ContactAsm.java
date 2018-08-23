@@ -18,9 +18,9 @@ import java.util.List;
  */
 public class ContactAsm extends ResourceAssemblerSupport<Contact, ContactDTO> {
     private ContactMapper mapper;
-    public ContactAsm(){
+    public ContactAsm(ContactMapper mapper){
         super(ContactController.class, ContactDTO.class);
-        mapper = new ContactMapper();
+        this.mapper = mapper;
     }
 
 

@@ -13,18 +13,22 @@ public class ContactTest {
     private Contact contact;
 
     @Before
-    public void setup(){
-        contact = new Contact();
+    public void setup() {
+        contact = getSampleInstance();
+    }
+
+    public static Contact getSampleInstance() {
+        Contact contact = new Contact();
         contact.setId(0L);
         contact.setName("Name");
         contact.setSurname("Surname");
         contact.setAddress("Address");
         contact.setPhoneNumber("202 202 202");
+        return contact;
     }
 
-
     @Test
-    public void verifyContactResConstructor(){
+    public void verifyContactResConstructor() {
         ContactDTO contactDTO = new ContactMapper().map(contact);
         assertEquals(contactDTO.getAddress(), contact.getAddress());
         assertEquals(contactDTO.getName(), contact.getName());
@@ -33,9 +37,4 @@ public class ContactTest {
         assertEquals(contactDTO.getSurname(), contact.getSurname());
     }
 
-    @Test
-    public void verifyNoLinksInContactResYet(){
-        ContactDTO contactDTO = new ContactMapper().map(contact);
-        assertFalse(contactDTO.hasLinks());
-    }
 }

@@ -39,7 +39,7 @@ public class ContactController {
             ContactDTO contactDTO = contactService.findContactById(id);
             return new ResponseEntity<>(contactDTO, HttpStatus.FOUND);
         }catch(ContactDoesNotExistException e){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
@@ -54,7 +54,7 @@ public class ContactController {
 
     /**
      * @param contactDTO - resource to delete from database
-     * @return HttpStatus OK if deleted, NO_CONTENT if couldn't find entity to delete
+     * @return HttpStatus OK if deleted, NOT_FOUND if couldn't find entity to delete
      */
     @RequestMapping(method = RequestMethod.DELETE)
     public ResponseEntity deleteContact(@RequestBody ContactDTO contactDTO){
@@ -62,13 +62,13 @@ public class ContactController {
             contactService.deleteContact(contactDTO);
             return new ResponseEntity(HttpStatus.OK);
         }catch(ContactDoesNotExistException e){
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
 
     /**
      * @param contactDTO - resource to add to database
-     * @return HttpStatus CREATED if added, NO_CONTENT if couldn't get entity back from database.
+     * @return HttpStatus CREATED if added, NOT_FOUND if couldn't get entity back from database.
      */
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<ContactDTO> createContact(@RequestBody ContactDTO contactDTO){
@@ -76,13 +76,13 @@ public class ContactController {
             contactService.addContact(contactDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (ContactDoesNotExistException e){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
     /**
      * @param contactDTO - resouce to update in database
-     * @return HttpStatus OK if edited, NO_CONTENT if couldn't find entity to edit
+     * @return HttpStatus OK if edited, NOT_FOUND if couldn't find entity to edit
      */
     @RequestMapping(method = RequestMethod.PUT)
     public ResponseEntity<ContactDTO> updateContact(@RequestBody ContactDTO contactDTO){
@@ -90,7 +90,7 @@ public class ContactController {
             ContactDTO updated = contactService.editContact(contactDTO);
             return new ResponseEntity<>(updated, HttpStatus.OK);
         }catch(ContactDoesNotExistException e){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }
