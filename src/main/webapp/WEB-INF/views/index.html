@@ -3,31 +3,28 @@
 <head>
     <meta charset="utf-8"/>
     <title>Contacts app</title>
-    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
     <link rel="stylesheet" href="resources/css/app.css"/>
 </head>
+
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="navbar-brand" href="#"><h1>Contacts Web App</h1></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbar">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#!/contacts">My contacts</a>
-                </li>
+<div id="wrapper">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">Contacts Web App</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a href="#!/contacts">My contacts</a></li>
             </ul>
         </div>
-    </div>
-</nav>
-
-<div ng-view></div>
-<hr class="" />
-
+    </nav>
+    <div ng-view></div>
+</div>
 </body>
-<script src="resources/js/angular/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
 <script src="resources/js/angular-route/angular-route.js"></script>
 <script src="resources/js/app.js"></script>
 <script src="resources/js/services.js"></script>
