@@ -31,20 +31,16 @@ public class ContactController {
      * @return ContactDTO of given id
      */
     @GetMapping(value = "/{id}")
-    public ResponseEntity<ContactDTO> getContactById(@PathVariable("id") Long id){
-        try{
-            ContactDTO contactDTO = contactService.findContactById(id);
-            return new ResponseEntity<>(contactDTO, HttpStatus.FOUND);
-        }catch(ContactDoesNotExistException e){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<ContactDTO> getContactById(@PathVariable("id") Long id) {
+        ContactDTO contactDTO = contactService.findContactById(id);
+        return new ResponseEntity<>(contactDTO, HttpStatus.FOUND);
     }
 
     /**
      * @return List of all contacts.
      */
     @GetMapping
-    public ResponseEntity<List<ContactDTO>> getAllContacts(){
+    public ResponseEntity<List<ContactDTO>> getAllContacts() {
         List<ContactDTO> contactDTOList = contactService.findAllContacts();
         return new ResponseEntity<>(contactDTOList, HttpStatus.OK);
     }
@@ -54,13 +50,9 @@ public class ContactController {
      * @return HttpStatus OK if deleted, NOT_FOUND if couldn't find entity to delete
      */
     @DeleteMapping
-    public ResponseEntity deleteContact(@RequestBody ContactDTO contactDTO){
-        try{
-            contactService.deleteContact(contactDTO);
-            return new ResponseEntity(HttpStatus.OK);
-        }catch(ContactDoesNotExistException e){
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity deleteContact(@RequestBody ContactDTO contactDTO) {
+        contactService.deleteContact(contactDTO);
+        return new ResponseEntity(HttpStatus.OK);
     }
 
     /**
@@ -68,13 +60,9 @@ public class ContactController {
      * @return HttpStatus CREATED if added, NOT_FOUND if couldn't get entity back from database.
      */
     @PostMapping
-    public ResponseEntity<ContactDTO> createContact(@RequestBody ContactDTO contactDTO){
-        try {
-            contactService.addContact(contactDTO);
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        }catch (ContactDoesNotExistException e){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<ContactDTO> createContact(@RequestBody ContactDTO contactDTO) {
+        contactService.addContact(contactDTO);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     /**
@@ -82,12 +70,8 @@ public class ContactController {
      * @return HttpStatus OK if edited, NOT_FOUND if couldn't find entity to edit
      */
     @PutMapping
-    public ResponseEntity<ContactDTO> updateContact(@RequestBody ContactDTO contactDTO){
-        try {
-            ContactDTO updated = contactService.editContact(contactDTO);
-            return new ResponseEntity<>(updated, HttpStatus.OK);
-        }catch(ContactDoesNotExistException e){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<ContactDTO> updateContact(@RequestBody ContactDTO contactDTO) {
+        ContactDTO updated = contactService.editContact(contactDTO);
+        return new ResponseEntity<>(updated, HttpStatus.OK);
     }
 }

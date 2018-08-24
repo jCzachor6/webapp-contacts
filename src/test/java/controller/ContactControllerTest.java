@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import czachor.jakub.contacts.controller.AppControllerAdvice;
 import czachor.jakub.contacts.controller.ContactController;
 import czachor.jakub.contacts.models.ContactDTO;
 import czachor.jakub.contacts.models.asm.ContactAsm;
@@ -46,7 +47,10 @@ public class ContactControllerTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        mockMvc = MockMvcBuilders
+                .standaloneSetup(controller)
+                .setControllerAdvice(new AppControllerAdvice())
+                .build();
         contact = ContactTest.getSampleInstance();
     }
 
