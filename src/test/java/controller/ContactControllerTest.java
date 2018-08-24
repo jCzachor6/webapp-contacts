@@ -59,7 +59,6 @@ public class ContactControllerTest {
         when(service.findContactById(1L)).thenReturn(new ContactAsm(new ContactMapper()).toResource(contact));
         mockMvc.perform(get("/contact/{id}", 1L))
                 .andExpect(status().isFound())
-                //.andDo(print())
                 .andExpect(jsonPath("$.name", is("Name")))
                 .andExpect(jsonPath("$.surname", is("Surname")))
                 .andExpect(jsonPath("$.address", is("Address")))

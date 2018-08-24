@@ -1,6 +1,5 @@
 package czachor.jakub.contacts.models;
 
-import czachor.jakub.contacts.models.entities.Contact;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

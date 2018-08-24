@@ -41,6 +41,4 @@ public class ThymeleafConfig implements ServletContextAware {
         resolver.setTemplateEngine(templateEngine());
         return resolver;
     }
-
-
 }

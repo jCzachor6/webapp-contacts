@@ -47,11 +47,6 @@ public class ContactServiceTest {
     @Autowired
     private ContactDao contactDao;
 
-    @Before
-    public void setUp() throws Exception {
-
-    }
-
     @Test
     public void findContactByIdTest() {
         Contact foundContact = ContactTest.getSampleInstance();
