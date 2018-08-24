@@ -1,40 +1,40 @@
-<div id="wrapper">
-        <h2>Saved contacts</h2>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Surname</th>
-                <th>Address</th>
-                <th>Phone number</th>
-                <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th><input type="text" class="form-control" ng-model="single.name" maxlength="30"></th>
-                <th><input type="text" class="form-control" ng-model="single.surname" maxlength="30"></th>
-                <th><input type="text" class="form-control" ng-model="single.address" maxlength="30"></th>
-                <th><input type="text" class="form-control" ng-model="single.phoneNumber" maxlength="15"></th>
-                <th>
-                    <button class="btn btn-mini btn-success" ng-click="addContact(single)" ng-hide="edit"
-                            ng-disabled="!single.name || !single.surname || !single.address || !single.phoneNumber">Add contact</button>
-                    <button class="btn btn-mini btn-info" ng-click="editContact(single)" ng-show="edit"
-                            ng-disabled="!single.name || !single.surname || !single.address || !single.phoneNumber">Edit contact</button>
-                </th>
-            </tr>
-            <tr ng-repeat="contact in contacts | orderBy:sort">
-                <th>{{contact.name}}</th>
-                <th>{{contact.surname}}</th>
-                <th>{{contact.address}}</th>
-                <th>{{contact.phoneNumber}}</th>
-                <th>
-                    <button class="btn btn-mini btn-warning" ng-click="deleteContact(contact)">Delete</button>
-                    <button class="btn btn-mini" ng-click="editMode(contact)">Edit</button>
-                </th>
-            </tr>
-            </tbody>
-        </table>
-    <button class="btn btn-mini" ng-click="sort='surname'">Sort by surname</button>
-    <button class="btn btn-mini btn-info" ng-click="reset()">Reset</button>
-</div>
+<h2>Saved contacts</h2>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Address</th>
+        <th>Phone number</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th><input type="text" class="form-control" ng-model="single.name" maxlength="30"></th>
+        <th><input type="text" class="form-control" ng-model="single.surname" maxlength="30"></th>
+        <th><input type="text" class="form-control" ng-model="single.address" maxlength="30"></th>
+        <th><input type="text" class="form-control" ng-model="single.phoneNumber" maxlength="15"></th>
+        <th>
+            <button class="btn btn-mini btn-success" ng-click="addContact(single)" ng-hide="edit"
+                    ng-disabled="!single.name || !single.surname || !single.address || !single.phoneNumber">Add contact
+            </button>
+            <button class="btn btn-mini btn-info" ng-click="editContact(single)" ng-show="edit"
+                    ng-disabled="!single.name || !single.surname || !single.address || !single.phoneNumber">Edit contact
+            </button>
+        </th>
+    </tr>
+    <tr ng-repeat="contact in contacts | orderBy:sort">
+        <th>{{contact.name}}</th>
+        <th>{{contact.surname}}</th>
+        <th>{{contact.address}}</th>
+        <th>{{contact.phoneNumber}}</th>
+        <th>
+            <button class="btn btn-mini btn-warning" ng-click="deleteContact(contact)">Delete</button>
+            <button class="btn btn-mini" ng-click="editMode(contact)">Edit</button>
+        </th>
+    </tr>
+    </tbody>
+</table>
+<button class="btn btn-mini" ng-click="sort='surname'">Sort by surname</button>
+<button class="btn btn-mini btn-info" ng-click="reset()">Reset</button>
