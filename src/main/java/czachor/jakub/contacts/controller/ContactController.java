@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,7 +15,7 @@ import java.util.List;
  * @author Jakub Czachor
  * ContactController consist all REST methods used to manage contacts.
  */
-@Controller
+@RestController
 @RequestMapping("/contact")
 public class ContactController {
 
@@ -33,7 +30,7 @@ public class ContactController {
      * @param id - Unique identifier of a Comment
      * @return ContactDTO of given id
      */
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    @GetMapping(value = "/{id}")
     public ResponseEntity<ContactDTO> getContactById(@PathVariable("id") Long id){
         try{
             ContactDTO contactDTO = contactService.findContactById(id);
@@ -46,7 +43,7 @@ public class ContactController {
     /**
      * @return List of all contacts.
      */
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public ResponseEntity<List<ContactDTO>> getAllContacts(){
         List<ContactDTO> contactDTOList = contactService.findAllContacts();
         return new ResponseEntity<>(contactDTOList, HttpStatus.OK);
@@ -56,7 +53,7 @@ public class ContactController {
      * @param contactDTO - resource to delete from database
      * @return HttpStatus OK if deleted, NOT_FOUND if couldn't find entity to delete
      */
-    @RequestMapping(method = RequestMethod.DELETE)
+    @DeleteMapping
     public ResponseEntity deleteContact(@RequestBody ContactDTO contactDTO){
         try{
             contactService.deleteContact(contactDTO);
@@ -70,7 +67,7 @@ public class ContactController {
      * @param contactDTO - resource to add to database
      * @return HttpStatus CREATED if added, NOT_FOUND if couldn't get entity back from database.
      */
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public ResponseEntity<ContactDTO> createContact(@RequestBody ContactDTO contactDTO){
         try {
             contactService.addContact(contactDTO);
@@ -84,7 +81,7 @@ public class ContactController {
      * @param contactDTO - resouce to update in database
      * @return HttpStatus OK if edited, NOT_FOUND if couldn't find entity to edit
      */
-    @RequestMapping(method = RequestMethod.PUT)
+    @PutMapping
     public ResponseEntity<ContactDTO> updateContact(@RequestBody ContactDTO contactDTO){
         try {
             ContactDTO updated = contactService.editContact(contactDTO);
